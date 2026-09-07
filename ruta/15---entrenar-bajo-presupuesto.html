@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr"><head><title>15 - Entrenar bajo presupuesto</title><meta charset="utf-8"/><link rel="preload" href="../index-fe4e9060.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Entrenamiento IOAI"/><meta property="og:title" content="15 - Entrenar bajo presupuesto"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="15 - Entrenar bajo presupuesto"/><meta name="twitter:description" content="15 · Entrenar bajo presupuesto Nivel 2 — Deep learning · Ruta de Aprendizaje Dos modelos pueden tener la misma cantidad de pesos y consumir distinta memoria al entrenar."/><meta property="og:description" content="15 · Entrenar bajo presupuesto Nivel 2 — Deep learning · Ruta de Aprendizaje Dos modelos pueden tener la misma cantidad de pesos y consumir distinta memoria al entrenar."/><meta property="og:image:alt" content="15 · Entrenar bajo presupuesto Nivel 2 — Deep learning · Ruta de Aprendizaje Dos modelos pueden tener la misma cantidad de pesos y consumir distinta memoria al entrenar."/><meta property="twitter:domain" content="flizamar.github.io/entrenamiento-ioai-web"/><meta property="og:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/15---entrenar-bajo-presupuesto"/><meta property="twitter:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/15---entrenar-bajo-presupuesto"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="15 · Entrenar bajo presupuesto Nivel 2 — Deep learning · Ruta de Aprendizaje Dos modelos pueden tener la misma cantidad de pesos y consumir distinta memoria al entrenar."/><meta name="generator" content="Quartz"/><link href="../index-fe4e9060.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/15---entrenar-bajo-presupuesto-og-image.webp"/><meta property="og:image:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/15---entrenar-bajo-presupuesto-og-image.webp"/><meta name="twitter:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/15---entrenar-bajo-presupuesto-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="ruta/15---entrenar-bajo-presupuesto" data-basepath="/entrenamiento-ioai-web"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Entrenamiento IOAI</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Buscar" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Buscar</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Buscar algo..." placeholder="Buscar algo..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Modo oscuro"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Modo oscuro"><title>Modo oscuro</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Modo claro"><title>Modo claro</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Modo lector"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Modo lector"><title>Modo lector</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a, b) => { const orden = [\&quot;ruta\&quot;, \&quot;referencia\&quot;, \&quot;ioai\&quot;]; const ra = orden.indexOf(a.slugSegment), rb = orden.indexOf(b.slugSegment); if (ra !== -1 &amp;&amp; rb !== -1) return ra - rb; if (ra !== -1) return -1; if (rb !== -1) return 1; if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1; return a.displayName.localeCompare(b.displayName, undefined, { numeric: true, sensitivity: \&quot;base\&quot; }); }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-91" aria-label="Explorador"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorador</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-91" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../ruta/">ruta</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>15 - Entrenar bajo presupuesto</a></div></nav><h1 class="article-title">15 - Entrenar bajo presupuesto</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/ruta" class="internal internal-link tag-link">ruta</a><span class="note-properties-separator">, </span><a href="../tags/nivel/2" class="internal internal-link tag-link">nivel/2</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-09-07T00:22:51.515Z">07 sept 2026</time><span>Se lee en 11 min</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="15--entrenar-bajo-presupuesto">15 · Entrenar bajo presupuesto<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15--entrenar-bajo-presupuesto" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><strong>Nivel 2 — Deep learning</strong> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a></p>
+<p>Dos modelos pueden tener la misma cantidad de pesos y consumir distinta
+memoria al entrenar. El lote, el largo de las secuencias y qué parámetros se
+actualizan también cuentan. ¿Dónde se gasta el presupuesto y qué cambio reduce
+justamente ese componente? Este capítulo conecta las operaciones anteriores
+con su costo.</p>
+<h2 id="el-presupuesto-real">El presupuesto real<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#el-presupuesto-real" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>El entorno individual de 2026 descrito en <a href="../ioai/formato-ioai-y-estrategia" class="internal internal-link alias" data-slug="ioai/formato-ioai-y-estrategia">Formato IOAI y estrategia</a> da una
+referencia concreta. El enunciado de cada tarea determina el límite aplicable;
+no son propiedades permanentes de la IOAI:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Recurso</th><th>Cuánto</th></tr></thead><tbody><tr><td>GPU</td><td>una, <strong>~16 GB de VRAM</strong></td></tr><tr><td>Tiempo de ejecución</td><td><strong>5 a 12 minutos por tarea</strong>, según el enunciado</td></tr><tr><td>Almacenamiento</td><td>5 GB</td></tr><tr><td>Tamaño y archivos de solución</td><td>según tarea; normalmente notebook ≤ 1 MB, con excepciones y entregas adicionales como <code>custom_model.py</code> en IOAI Field</td></tr><tr><td>Internet</td><td><strong>no hay</strong></td></tr><tr><td>Instalar paquetes</td><td><strong>prohibido</strong></td></tr></tbody></table></div>
+<p>Cuando la entrega se vuelve a ejecutar sobre datos ocultos, el tiempo incluye
+las etapas que haga ese notebook. Si entrena, entrenará de nuevo al calificar.
+Su duración puede cambiar con el volumen de datos y la máquina: medir solo una
+sesión ya preparada puede subestimar el trabajo real.</p>
+<h2 id="cuánta-memoria-consume-entrenar">Cuánta memoria consume entrenar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cuánta-memoria-consume-entrenar" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>La <strong>VRAM</strong> es la memoria de la GPU; la RAM pertenece al sistema y alojará,
+por ejemplo, datos preparados en CPU. Durante entrenamiento, cuatro componentes
+principales ocupan VRAM:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Componente</th><th>Qué guarda</th><th>Aproximación para float32 y AdamW</th></tr></thead><tbody><tr><td><strong>Pesos</strong></td><td>los parámetros del modelo</td><td>4 bytes por parámetro</td></tr><tr><td><strong>Gradientes</strong></td><td>cuánto cambia la pérdida al mover cada parámetro entrenable</td><td>unos 4 bytes por parámetro con gradiente</td></tr><tr><td><strong>Estado del optimizador</strong></td><td>promedios de gradientes y de sus cuadrados</td><td>unos 8 bytes por parámetro que AdamW actualiza</td></tr><tr><td><strong>Activaciones</strong></td><td>resultados intermedios necesarios para calcular los gradientes</td><td>depende de lote, formas, capas y operaciones</td></tr></tbody></table></div>
+<p>Para 110 millones de parámetros completamente entrenables, las tres primeras
+filas suman aproximadamente 440 + 440 + 880 = <strong>1.760 MB decimales</strong>. No se
+reservan necesariamente al construir el modelo: muchos gradientes y estados
+aparecen durante el primer backward y el primer paso. La memoria pico incluye
+además activaciones, buffers y espacio temporal.</p>
+<p><img src=".././referencia/figuras/lora_memoria.png" alt="Componentes de memoria en entrenamiento completo y con LoRA"/></p>
+<p>En las barras, el azul de los pesos base permanece con LoRA. Se reducen el
+naranja de gradientes y el verde del optimizador, mientras el violeta de las
+activaciones sigue presente. Las alturas son ilustrativas: no representan tu
+modelo ni un ahorro fijo. Las matrices de la izquierda explican por qué una
+actualización puede tener muchos menos parámetros que la matriz base.</p>
+<p>Las activaciones de muchas capas crecen aproximadamente con
+<code>lote × posiciones × ancho × capas</code>. La atención densa añade un término
+cuadrático en posiciones si materializa su matriz de pesos. Kernels que evitan
+guardarla completa y técnicas que recalculan activaciones cambian esa cuenta.</p>
+<p>En inferencia sin gradientes no hacen falta estados del optimizador ni guardar
+intermedios para backward. Si conservas un optimizador ya entrenado en la GPU,
+sus estados <strong>siguen ocupando memoria</strong>: <code>no_grad()</code> no los borra. Congelar o
+usar LoRA reduce lo entrenable, pero tampoco retira los pesos base. La precisión
+mixta no divide automáticamente todos los componentes a la mitad.</p>
+<h2 id="elegir-una-palanca-según-dónde-se-gasta-memoria">Elegir una palanca según dónde se gasta memoria<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#elegir-una-palanca-según-dónde-se-gasta-memoria" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>1. Reducir el lote o la longitud.</strong> Ayuda cuando dominan las activaciones.
+Un lote menor guarda menos ejemplos a la vez; una secuencia más corta reduce
+posiciones y pares de atención. Si la señal está al final del texto, truncarla
+cambia el problema. Si los pesos solos no caben, reducir el lote no lo resolverá.</p>
+<p>Cambiar el lote también cambia el número de actualizaciones por época, como
+vimos en el módulo 11. La tasa no necesita una corrección universal: su efecto
+se vuelve a comparar con validación y presupuesto.</p>
+<p><strong>2. Acumulación de gradientes.</strong> Podemos procesar varios <strong>microbatches</strong>, o
+lotes pequeños, sumando sus gradientes antes de actualizar. El <strong>lote efectivo</strong>
+es el conjunto de ejemplos que contribuye a ese paso. Lo que ahorra memoria es
+procesarlos por partes; acumular no reduce los pesos ni el estado del optimizador.</p>
+<p>Si dos microbatches tienen 4 y 2 ejemplos, el promedio conjunto debe dar el mismo
+peso a cada uno de los seis. Promediar sin más las dos pérdidas medias daría a
+cada ejemplo del segundo lote el doble de influencia.</p>
+<p>La pérdida debe ser la <strong>media por ejemplo</strong> y cada ejemplo debe pesar igual.
+Acumulamos sumas, dividimos el gradiente por el número real de muestras y
+aplicamos también la cola final. Así un microbatch más chico no pesa tanto como
+uno completo. Para pérdidas por token con longitudes variables, cambia el
+contador al número de tokens válidos; para pérdidas ponderadas respeta su
+denominador real.</p>
+<p>La equivalencia con un lote físico grande supone que la pérdida se puede sumar
+por ejemplos y que el modelo no depende de qué compañeros comparten microbatch.
+BatchNorm usa estadísticas de ese grupo, así que cambia el cálculo. Dropout
+también puede usar máscaras distintas: acumular no promete resultados idénticos
+en esos casos.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: probado; id: acumulacion</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> entrenar_con_acumulacion</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(modelo, cargador, optimizador, perdida,</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="important">                             acumular</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, dispositivo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;cpu&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">):</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    if</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> not</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> isinstance</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(acumular, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">or</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> acumular </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        raise</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property"> ValueError</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;acumular debe ser un entero positivo&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    modelo.train()  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># mover el modelo ANTES de crear el optimizador</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    optimizador.zero_grad(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">set_to_none</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">True</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    muestras, microbatches, pasos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> actualizar</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(n):</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> p </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> modelo.parameters():</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">            if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> p.grad </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">is</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> not</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> None</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">                p.grad.div_(n)       </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># media del lote efectivo, por muestras</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        optimizador.step()</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        optimizador.zero_grad(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">set_to_none</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">True</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> X, y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> cargador:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(X) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">            raise</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property"> ValueError</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;un microbatch no puede estar vacío&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        X, y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> X.to(dispositivo), y.to(dispositivo)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        (perdida(modelo(X), y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(X)).backward()</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        muestras </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(X)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        microbatches </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> microbatches </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> acumular:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">            actualizar(muestras)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">            muestras, microbatches </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            pasos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> muestras:                    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># cola, incluso si hay menos de 4 lotes</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">        actualizar(muestras)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        pasos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> pasos</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Modelo y optimizador deben usar el mismo dispositivo desde su creación.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pasos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> entrenar_con_acumulacion(modelo, cargador, optimizador, perdida,</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">                                acumular</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dispositivo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">dispositivo)</span></span></code></pre></figure>
+<p>Aquí usamos a propósito la suma en <code>.grad</code> del módulo 09. Los pesos permanecen
+fijos mientras se procesan los microbatches de un grupo. Solo después de dividir
+por la cantidad real de muestras se actualizan y se limpian los gradientes.
+La cola final también produce un paso, aunque no complete cuatro microbatches.</p>
+<p>El cómputo es comparable, pero varios microbatches pueden tardar más por el
+costo de llamadas y el uso menos eficiente de la GPU. Dividir por un número
+fijo de microbatches solo promedia correctamente si todos tienen igual peso
+y el grupo está completo; por eso el código usa las muestras reales.</p>
+<p><strong>3. Precisión mixta.</strong> Ejecutar operaciones seleccionadas en 16 bits y
+conservar otras en 32 puede reducir memoria y acelerar GPUs compatibles.
+El ahorro total depende de qué tensores y operaciones cambian de precisión.
+En este fragmento, modelo y lotes deben estar en una GPU CUDA compatible; no
+es la variante para ejecutar en CPU:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.amp </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> autocast, GradScaler</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">escalador </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> GradScaler(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;cuda&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> X, y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> cargador:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    optimizador.zero_grad()</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    with</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> autocast(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;cuda&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dtype</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">torch.float16):</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        valor </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> perdida(modelo(X), y)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    escalador.scale(valor).backward()</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    escalador.step(optimizador)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    escalador.update()</span></span></code></pre></figure>
+<p>El <code>GradScaler</code> atiende un problema concreto: en float16, los gradientes
+suficientemente pequeños pueden redondearse a cero (<em>underflow</em>). Escala la pérdida hacia arriba antes del backward y
+desescala antes del paso. Reduce el riesgo de perder gradientes en float16;
+no garantiza estabilidad ante cualquier configuración.</p>
+<p><strong>4. Congelar o usar LoRA</strong> (módulo 14). Reduce los parámetros para los que
+se necesitan gradientes y estados del optimizador. Si antes se entrenaban todos,
+conviene liberar el optimizador anterior al preparar la nueva fase. El ahorro
+no elimina las activaciones que necesitan los adaptadores.</p>
+<p><strong>5. Un modelo más chico.</strong> Reduce pesos y puede reducir activaciones y tiempo:
+menos capas, menos ancho o una arquitectura menor. La calidad depende de su
+representación y de los datos disponibles. Es una alternativa que se compara,
+siempre dentro de los modelos permitidos por la tarea.</p>
+<h2 id="presupuesto-de-parámetros">Presupuesto de parámetros<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#presupuesto-de-parámetros" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>A veces el límite no es la memoria: es el enunciado. <a href="../ioai/2026/ioai-field/" class="internal internal-link alias" data-slug="ioai/2026/ioai-field/index">IOAI Field</a> (2026)
+<strong>parte el puntaje por la mitad</strong> si el modelo pasa de <strong>20.260 parámetros</strong>,
+medidos exactamente así:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">sum</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(p.numel() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> p </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> modelo.parameters())</span></span></code></pre></figure>
+<p>La receta <a href="../referencia/recetas/contar-parámetros" class="internal internal-link alias" data-slug="referencia/recetas/contar-parámetros">Contar parámetros</a> lo replica y trae <code>cabe_en_presupuesto</code>. Y su
+prueba verifica el detalle que engaña: <strong>congelar no baja esa cuenta</strong>. Congelar
+reduce el costo de entrenar; los parámetros declarados siguen ahí.</p>
+<p>Este conteo mide parámetros, no operaciones ni bytes de activaciones. Dos
+redes con la misma cuenta pueden tardar distinto. En este contrato, exactamente
+20.260 parámetros no exceden el límite; congelar algunos tampoco permite declarar
+una cuenta menor.</p>
+<h2 id="medir-etapas-y-después-la-ejecución-completa">Medir etapas y después la ejecución completa<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#medir-etapas-y-después-la-ejecución-completa" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> time</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.device(dispositivo).type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;cuda&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    torch.cuda.synchronize(dispositivo)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">inicio </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> time.perf_counter()</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">historial </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> entrenar(modelo, cargador, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">epocas</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dispositivo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">dispositivo)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.device(dispositivo).type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;cuda&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    torch.cuda.synchronize(dispositivo)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">por_epoca </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> time.perf_counter() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> inicio</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;una época: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">%.1f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> s -> </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">%d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> épocas: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">%.1f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> s&quot;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> %</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> (por_epoca, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, por_epoca </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))</span></span></code></pre></figure>
+<p>CUDA ejecuta trabajo de forma asíncrona: el programa puede avanzar antes de
+que termine la GPU. <code>synchronize</code> espera esa finalización para que el cronómetro
+incluya el trabajo medido. La condición admite dispositivos como <code>&quot;cuda:0&quot;</code>,
+además de <code>&quot;cuda&quot;</code>.</p>
+<p>Multiplicar una época da una primera estimación. La primera puede incluir
+preparación y las siguientes no; el tamaño de evaluación oculto puede diferir
+de <code>test_public</code>. Por eso también importan carga, tokenización e inferencia,
+y una ejecución completa desde un kernel nuevo.</p>
+<p>El margen razonable depende de la variación observada y del contrato. Un
+porcentaje fijo de tiempo para entrenar no sustituye medir cuánto necesitan
+las otras etapas.</p>
+<h2 id="cuando-aparece-un-error-de-memoria">Cuando aparece un error de memoria<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cuando-aparece-un-error-de-memoria" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Tensores que siguen vivos.</strong> Guardar salidas conectadas al grafo puede retener
+memoria. Para registrar pérdidas escalares usa <code>.item()</code>; para conservar
+representaciones sin gradientes, <code>.detach()</code> y, si corresponde, CPU. También
+pueden seguir vivos un modelo anterior o un optimizador que ya no usas. El
+crecimiento de memoria entre iteraciones es una pista, no una causa única.</p>
+<p><strong>Procesos de carga.</strong> <code>num_workers</code> crea procesos para preparar lotes. Más
+procesos pueden acelerar lecturas o transformaciones, pero también aumentar
+RAM y coordinación; con datos pequeños en memoria pueden ser más lentos.
+Comparar 0 con unos pocos workers permite saber si el cuello de botella está
+allí. La RAM agotada por carga y la VRAM agotada por activaciones son problemas
+distintos.</p>
+<p><strong>Optimizar una etapa que apenas cuesta.</strong> Acelerar una operación diez veces
+sirve poco si ocupaba el 1% del total. Un perfil por etapas muestra dónde vale
+la pena intervenir. Después de cambiar precisión, lote o arquitectura, vuelve
+a medir también la calidad: algunas optimizaciones cambian el entrenamiento.</p>
+<h2 id="️-práctica">🏋️ Práctica<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-práctica" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>Ejercicio</th><th>Fuente</th><th>Qué practica</th></tr></thead><tbody><tr><td>1</td><td>Entrena el mismo modelo con batch 8, 32 y 128 y anota memoria y tiempo</td><td>—</td><td>ver las curvas de consumo</td></tr><tr><td>2</td><td>Provoca un <em>out of memory</em> a propósito y arréglalo con cada palanca, una a una</td><td>—</td><td>que el error deje de dar miedo</td></tr><tr><td>3</td><td>Implementa acumulación de gradientes y comprueba que da lo mismo que el lote grande</td><td>—</td><td>el mecanismo, entendido</td></tr><tr><td>4</td><td>⭐ <a href="../ioai/2026/ioai-field/" class="internal internal-link alias" data-slug="ioai/2026/ioai-field/index">IOAI Field</a>: diseña un modelo de hasta 20.260 parámetros y verifícalo</td><td><a href="../referencia/recetas/contar-parámetros" class="internal internal-link alias" data-slug="referencia/recetas/contar-parámetros">Contar parámetros</a></td><td>un presupuesto real de la IOAI</td></tr><tr><td>5</td><td>Toma tu solución del módulo 14 y hazla caber en <strong>la mitad</strong> del tiempo</td><td><a href="../ioai/2026/ghost-of-the-machine/" class="internal internal-link alias" data-slug="ioai/2026/ghost-of-the-machine/index">Ghost of the Machine</a></td><td>la habilidad completa</td></tr></tbody></table></div>
+<p>Para el 3 usa una red determinista <strong>sin dropout ni BatchNorm</strong>, el mismo
+orden de ejemplos, la misma pérdida media y un paso de SGD por lote efectivo.
+Compara los pesos con <code>torch.allclose</code>, no con igualdad exacta: el orden de
+sumas introduce redondeo. Prueba también tres microbatches y una cola de
+tamaño desigual. Con BatchNorm los estadísticos cambian por microbatch; con
+dropout pueden cambiar las máscaras. No esperes equivalencia general.</p>
+<h2 id="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-mini-desafío-formato-ioai" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p><strong>Tarea</strong>: <a href="../ioai/2026/ghost-of-the-machine/" class="internal internal-link alias" data-slug="ioai/2026/ghost-of-the-machine/index">Ghost of the Machine</a> otra vez, pero ahora con el presupuesto de
+verdad.
+<strong>Métrica</strong>: promedio de <code>exp(−|error|/100)</code> × 100.
+<strong>Baseline local</strong>: ejecuta la referencia oficial en el mismo split que tu
+modelo. Los valores 28.6 y 93.41 son referencias del split A oculto oficial
+y no deben trasladarse a tu validación propia.
+<strong>Restricción</strong>: <strong>10 minutos de reloj</strong> para entrenamiento <strong>e</strong> inferencia,
+medidos con <code>time.perf_counter()</code>, y ~16 GB de VRAM.</p>
+<p>Una tabla por etapas —carga, tokenización, entrenamiento e inferencia—
+permite ver qué limita tu solución. Añade la memoria pico y compara dos
+alternativas: ¿la que logra mejor score sin límite sigue siendo preferible
+dentro de este presupuesto?</p>
+</blockquote>
+<h2 id="para-explorar">Para explorar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#para-explorar" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Grafica memoria y segundos frente al tamaño de microbatch. Busca el punto
+donde bajar memoria deja de ayudar al tiempo total.</p>
+<p>Compara acumulación con un lote físico grande y luego añade BatchNorm. La
+pérdida de equivalencia muestra que un lote también puede formar parte de la
+operación del modelo, además de organizar los datos.</p>
+<hr/>
+<p>← <a href="../ruta/14---fine-tuning-y-lora" class="internal internal-link alias" data-slug="ruta/14---fine-tuning-y-lora">14 - Fine-tuning y LoRA</a> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a> ·
+<a href="../ruta/16---visión-i" class="internal internal-link alias" data-slug="ruta/16---visión-i">16 - Visión I</a> →</p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Vista Gráfica</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:1,&quot;centerForce&quot;:0.4,&quot;linkDistance&quot;:45,&quot;fontSize&quot;:0.7,&quot;opacityScale&quot;:3,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.7,&quot;repelForce&quot;:1.3,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:50,&quot;fontSize&quot;:0.65,&quot;opacityScale&quot;:1.5,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-91" aria-expanded="true"><h3>Tabla de Contenidos</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#15--entrenar-bajo-presupuesto" data-for="15--entrenar-bajo-presupuesto">15 · Entrenar bajo presupuesto</a></li><li class="depth-1"><a href="#el-presupuesto-real" data-for="el-presupuesto-real">El presupuesto real</a></li><li class="depth-1"><a href="#cuánta-memoria-consume-entrenar" data-for="cuánta-memoria-consume-entrenar">Cuánta memoria consume entrenar</a></li><li class="depth-1"><a href="#elegir-una-palanca-según-dónde-se-gasta-memoria" data-for="elegir-una-palanca-según-dónde-se-gasta-memoria">Elegir una palanca según dónde se gasta memoria</a></li><li class="depth-1"><a href="#presupuesto-de-parámetros" data-for="presupuesto-de-parámetros">Presupuesto de parámetros</a></li><li class="depth-1"><a href="#medir-etapas-y-después-la-ejecución-completa" data-for="medir-etapas-y-después-la-ejecución-completa">Medir etapas y después la ejecución completa</a></li><li class="depth-1"><a href="#cuando-aparece-un-error-de-memoria" data-for="cuando-aparece-un-error-de-memoria">Cuando aparece un error de memoria</a></li><li class="depth-1"><a href="#️-práctica" data-for="️-práctica">🏋️ Práctica</a></li><li class="depth-1"><a href="#-mini-desafío-formato-ioai" data-for="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)</a></li><li class="depth-1"><a href="#para-explorar" data-for="para-explorar">Para explorar</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Retroenlaces</h3><ul id="list-0" class="overflow"><li><a href="../ruta/14---fine-tuning-y-lora" class="internal">14 - Fine-tuning y LoRA</a></li><li><a href="../ruta/16---visión-i" class="internal">16 - Visión I</a></li><li><a href="../ruta/ruta-de-aprendizaje" class="internal">Ruta de Aprendizaje</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Creado con <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://ioai-official.org/">IOAI oficial</a></li><li><a href="https://github.com/IOAI-official">Tareas oficiales</a></li><li><a href="https://quartz.jzhao.xyz/">Hecho con Quartz</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-77bffeeb.js" type="module" data-persist="true"></script></html>

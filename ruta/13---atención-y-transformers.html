@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr"><head><title>13 - Atención y Transformers</title><meta charset="utf-8"/><link rel="preload" href="../index-fe4e9060.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Entrenamiento IOAI"/><meta property="og:title" content="13 - Atención y Transformers"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="13 - Atención y Transformers"/><meta name="twitter:description" content="13 · Atención y Transformers Nivel 2 — Deep learning · Ruta de Aprendizaje En el módulo 12 resumimos vectores de tokens."/><meta property="og:description" content="13 · Atención y Transformers Nivel 2 — Deep learning · Ruta de Aprendizaje En el módulo 12 resumimos vectores de tokens."/><meta property="og:image:alt" content="13 · Atención y Transformers Nivel 2 — Deep learning · Ruta de Aprendizaje En el módulo 12 resumimos vectores de tokens."/><meta property="twitter:domain" content="flizamar.github.io/entrenamiento-ioai-web"/><meta property="og:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/13---atención-y-transformers"/><meta property="twitter:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/13---atención-y-transformers"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="13 · Atención y Transformers Nivel 2 — Deep learning · Ruta de Aprendizaje En el módulo 12 resumimos vectores de tokens."/><meta name="generator" content="Quartz"/><link href="../index-fe4e9060.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/13---atención-y-transformers-og-image.webp"/><meta property="og:image:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/13---atención-y-transformers-og-image.webp"/><meta name="twitter:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/13---atención-y-transformers-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="ruta/13---atención-y-transformers" data-basepath="/entrenamiento-ioai-web"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Entrenamiento IOAI</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Buscar" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Buscar</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Buscar algo..." placeholder="Buscar algo..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Modo oscuro"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Modo oscuro"><title>Modo oscuro</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Modo claro"><title>Modo claro</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Modo lector"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Modo lector"><title>Modo lector</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a, b) => { const orden = [\&quot;ruta\&quot;, \&quot;referencia\&quot;, \&quot;ioai\&quot;]; const ra = orden.indexOf(a.slugSegment), rb = orden.indexOf(b.slugSegment); if (ra !== -1 &amp;&amp; rb !== -1) return ra - rb; if (ra !== -1) return -1; if (rb !== -1) return 1; if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1; return a.displayName.localeCompare(b.displayName, undefined, { numeric: true, sensitivity: \&quot;base\&quot; }); }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-89" aria-label="Explorador"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorador</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-89" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../ruta/">ruta</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>13 - Atención y Transformers</a></div></nav><h1 class="article-title">13 - Atención y Transformers</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/ruta" class="internal internal-link tag-link">ruta</a><span class="note-properties-separator">, </span><a href="../tags/nivel/2" class="internal internal-link tag-link">nivel/2</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-09-07T00:22:51.515Z">07 sept 2026</time><span>Se lee en 10 min</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="13--atención-y-transformers">13 · Atención y Transformers<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13--atención-y-transformers" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><strong>Nivel 2 — Deep learning</strong> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a></p>
+<p>En el módulo 12 resumimos vectores de tokens. Pero antes de resumirlos conviene
+que cada token incorpore contexto: «banco» no significa lo mismo junto a «plaza»
+que junto a «préstamo». La atención permite que una posición reúna información
+de otras y cambie su representación según la secuencia.</p>
+<h2 id="reunir-información-de-otras-posiciones">Reunir información de otras posiciones<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#reunir-información-de-otras-posiciones" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Un MLP puede procesar cada token por separado, pero así no intercambia información
+entre posiciones. La <strong>atención</strong> construye una mezcla para cada una: cuánto
+tomar de cada vector disponible depende del contenido y de qué posiciones se
+permite consultar.</p>
+<p><img src=".././referencia/figuras/atencion.png" alt="Afinidades convertidas en pesos que suman uno por fila"/></p>
+<p>Cada fila es una posición que consulta; cada columna, una posición de la que
+puede tomar información. En la primera fila, la afinidad 2.0 recibe un peso
+aproximado de 0.67, mayor que el de las otras columnas. Los cuatro pesos suman 1,
+salvo el redondeo del dibujo. Atención no elige obligatoriamente una única
+columna: reparte cuánto aporta cada una.</p>
+<p>Todavía falta aplicar esos pesos a los <strong>valores</strong> que se van a mezclar. En un
+ejemplo aparte de tres posiciones, si los pesos son <code>(0.5, 0.25, 0.25)</code> y los
+valores son <code>(2,0)</code>, <code>(0,4)</code> y <code>(4,4)</code>, la salida es:</p>
+<pre><code>0.5·(2,0) + 0.25·(0,4) + 0.25·(4,4) = (2,2)
+</code></pre>
+<p>Es un promedio ponderado, calculado coordenada por coordenada. Cada posición
+puede usar una mezcla distinta.</p>
+<h2 id="qué-representan-q-k-y-v">Qué representan Q, K y V<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#qué-representan-q-k-y-v" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Para decidir la mezcla, transformamos los vectores de entrada con matrices
+entrenables. En <strong>auto-atención</strong>, las tres transformaciones parten de la misma
+secuencia, pero tienen funciones distintas:</p>
+<ul>
+<li><strong>Q</strong>, <em>queries</em> o consultas: representa qué relaciones busca cada posición.</li>
+<li><strong>K</strong>, <em>keys</em> o claves: representa cómo se compara cada posición con las consultas.</li>
+<li><strong>V</strong>, <em>values</em> o valores: contiene la información que se combinará.</li>
+</ul>
+<p>«Buscar» y «ofrecer» son metáforas para operaciones aprendidas. El producto punto
+entre una consulta y una clave da una <strong>compatibilidad</strong>. No es necesariamente
+similitud semántica ni coseno: sus vectores no tienen por qué estar normalizados.</p>
+<p>Si hay <code>n</code> posiciones y consultas y claves de <code>d</code> coordenadas, <code>Q</code> y <code>K</code> tienen
+forma <code>(n,d)</code>. Transponer <code>K</code> permite comparar todos los pares en <code>Q @ K.T</code>,
+que tiene forma <code>(n,n)</code>. Softmax se aplica <strong>por fila</strong>, sobre las claves:</p>
+<pre><code>Atención(Q, K, V) = softmax(Q Kᵀ / √d) V
+</code></pre>
+<p>La última multiplicación mezcla las filas de <code>V</code>. Si <code>V</code> tiene <code>(n,d_valor)</code>,
+la salida tiene <code>(n,d_valor)</code>: conserva una representación por consulta. El
+siguiente bloque añade el eje de lote y usa <code>d_valor=d=4</code>. Sus Q, K y V son
+aleatorios para aislar la operación, sin entrenar un encoder.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: probado; id: atencion_escalada</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> torch</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.nn </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> nn</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 4</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">q </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.randn(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, d)      </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># (lote, posiciones, dimensión)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">k </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.randn(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, d)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">v </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.randn(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, d)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pesos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.softmax(q </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> k.transpose(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> d </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">**</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0.5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dim</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">salida </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> pesos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> v</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># y coincide con la implementación de PyTorch</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">referencia </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> nn.functional.scaled_dot_product_attention(q, k, v)</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(torch.allclose(salida, referencia, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">atol</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1e-6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))     </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># True</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(pesos.sum(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dim</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))                                 </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># tensor([[1., 1., 1.]])</span></span></code></pre></figure>
+<p>Que cada fila sume 1 permite interpretar sus números como pesos relativos de
+una mezcla. No significa que esos pesos expliquen por sí solos la decisión final
+de toda la red.</p>
+<p><strong>¿Por qué dividir por <code>√d</code>?</strong> Un producto punto suma <code>d</code> contribuciones. Si
+las coordenadas tienen escalas comparables y no están fuertemente correlacionadas,
+su variación crece con <code>d</code>. Compatibilidades muy distintas vuelven el softmax
+casi una elección única, donde los cambios pequeños pueden producir gradientes
+muy pequeños. La división controla esa escala bajo esas condiciones; no asegura
+que la atención nunca se concentre.</p>
+<h2 id="máscaras-qué-información-está-disponible">Máscaras: qué información está disponible<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#máscaras-qué-información-está-disponible" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Una <strong>máscara</strong> excluye conexiones antes de calcular los pesos. En la fórmula,
+una posición prohibida recibe compatibilidad <code>−∞</code>, de modo que su peso sea 0;
+las posiciones permitidas vuelven a repartirse la unidad de atención.</p>
+<p>Una máscara de <strong>padding</strong> impide tomar información del relleno que usamos para
+igualar largos. Una máscara <strong>causal</strong> impide consultar posiciones futuras.
+Al predecir el siguiente token desde una secuencia ya dada, la posición actual
+puede ver su propio token y los anteriores, pero no el siguiente que intenta
+predecir. Así se evita filtrar la respuesta durante entrenamiento.</p>
+<p>Las APIs no siempre interpretan igual una máscara booleana: en
+<a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html" class="external external-link" target="_blank"><code>scaled_dot_product_attention</code><svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>,
+<code>True</code> permite atender; en
+<a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html" class="external external-link" target="_blank"><code>MultiheadAttention</code><svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>,
+<code>True</code> bloquea esa conexión. La <code>attention_mask</code> habitual de HuggingFace usa 1
+para tokens válidos y 0 para padding. Una fila completamente excluida necesita
+tratamiento especial: no representa un promedio ordinario.</p>
+<h2 id="multi-head-varias-atenciones-en-paralelo">Multi-head: varias atenciones en paralelo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#multi-head-varias-atenciones-en-paralelo" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Una <strong>cabeza de atención</strong> usa sus propias proyecciones Q, K y V. <em>Multi-head</em>
+aplica varias en paralelo, concatena sus salidas y las vuelve a proyectar.
+Distintas cabezas pueden aprender relaciones diferentes; no se les asigna de
+antemano una función como «gramática» o «referencia».</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">atencion </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> nn.MultiheadAttention(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">embed_dim</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">64</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">num_heads</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">batch_first</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">True</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">salida, pesos </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> atencion(x, x, x)     </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># auto-atención: Q, K y V del mismo input</span></span></code></pre></figure>
+<p>Aquí <code>x</code> debe tener forma <code>(lote, posiciones, 64)</code>. Las ocho cabezas usan ocho
+coordenadas por cabeza; la salida conserva <code>(lote, posiciones, 64)</code>. Pasar <code>x</code>
+tres veces indica el origen de consultas, claves y valores: el módulo realiza
+internamente las proyecciones aprendidas. En <strong>atención cruzada</strong>, las consultas
+pueden venir de una secuencia y las claves y valores de otra.</p>
+<h2 id="el-bloque-transformer">El bloque Transformer<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#el-bloque-transformer" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Un Transformer combina bloques con la misma estructura, normalmente con pesos
+distintos. Un bloque común de encoder alterna:</p>
+<ol>
+<li><strong>Auto-atención multi-head</strong>, que mezcla información entre posiciones.</li>
+<li><strong>Conexión residual y normalización de capa</strong>.</li>
+<li><strong>Un MLP aplicado a cada posición</strong>, que transforma sus coordenadas.</li>
+<li><strong>Otra conexión residual y normalización</strong>.</li>
+</ol>
+<p>Una conexión <strong>residual</strong> suma la entrada al resultado de una transformación:
+<code>x + transformación(x)</code>. Conserva un camino directo para la información y el
+gradiente; facilita entrenar redes profundas, sin eliminar todos sus problemas.
+Las formas deben coincidir para sumarlas.</p>
+<p><strong>LayerNorm</strong>, o normalización de capa, normaliza las coordenadas de cada
+posición y aprende una escala y un desplazamiento. No usa los promedios entre
+lotes de BatchNorm del módulo 11. Existen variantes que normalizan antes o
+después de cada transformación; la lista muestra una estructura, no el único
+orden posible.</p>
+<h2 id="codificación-posicional-la-atención-no-sabe-de-orden">Codificación posicional: la atención no sabe de orden<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#codificación-posicional-la-atención-no-sabe-de-orden" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Si la atención completa no usa posiciones ni una máscara que dependa del orden,
+barajar la entrada también baraja la salida. Los vectores siguen siendo los
+mismos, solo cambian de lugar. Esa propiedad se llama <strong>equivarianza a
+permutaciones</strong>. Después de promediar esas salidas, perderíamos incluso la pista
+de dónde quedó cada token.</p>
+<p>Por eso el modelo necesita una señal de posición para distinguir «el perro
+muerde al hombre» de «el hombre muerde al perro». Una opción suma a cada embedding
+un vector de posición: una tabla aprendida o senos y cosenos de distintas
+frecuencias. Otras arquitecturas incorporan distancias o posiciones relativas
+dentro de la atención.</p>
+<p><a href="../ioai/2026/find-the-order/" class="internal internal-link alias" data-slug="ioai/2026/find-the-order/index">Find the Order</a> pide recuperar el orden de turnos de un diálogo. La tarea
+ilustra por qué el orden contiene información, aunque añadir posiciones a un
+Transformer no resuelva automáticamente una secuencia cuyo orden correcto aún
+se desconoce.</p>
+<h2 id="encoder-decoder-o-los-dos">Encoder, decoder, o los dos<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#encoder-decoder-o-los-dos" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Arquitectura</th><th>Qué información combina</th><th>Usos y ejemplos</th></tr></thead><tbody><tr><td><strong>Encoder</strong></td><td>cada posición consulta la entrada completa, salvo padding u otras máscaras</td><td>representación y clasificación: BERT, ViT, bge</td></tr><tr><td><strong>Decoder causal</strong></td><td>cada posición consulta su prefijo, incluida la posición actual</td><td>predecir el siguiente token: GPT, Qwen</td></tr><tr><td><strong>Encoder-decoder</strong></td><td>el encoder representa la entrada; el decoder consulta su prefijo y, por atención cruzada, la salida del encoder</td><td>traducción o transcripción: T5, Whisper</td></tr></tbody></table></div>
+<p>En generación, el decoder predice un token, lo incorpora al prefijo y repite.
+Durante entrenamiento puede calcular muchas predicciones a la vez porque la
+máscara causal impide mirar sus respuestas futuras.</p>
+<p><a href="../ioai/2026/ghost-of-the-machine/" class="internal internal-link alias" data-slug="ioai/2026/ghost-of-the-machine/index">Ghost of the Machine</a> permitía <code>bge-base-en-v1.5</code>, un encoder de texto.
+Sus representaciones podían ayudar a localizar un cambio entre frases; no
+disponía por sí solo de un mecanismo de generación de texto. La salida y el
+entrenamiento del modelo importan tanto como el nombre «Transformer».</p>
+<h2 id="vit-la-misma-cosa-con-parches">ViT: la misma cosa, con parches<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vit-la-misma-cosa-con-parches" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Un Vision Transformer divide la imagen en <strong>parches</strong>, aplana cada parche y lo
+proyecta a un vector. Esos vectores son sus tokens. Por ejemplo, una imagen
+<code>224×224</code> con parches <code>16×16</code> produce <code>14×14=196</code> parches; cada parche RGB
+contiene <code>16×16×3=768</code> valores antes de la proyección. El modelo puede añadir
+además un token especial y señales de posición.</p>
+<p>Una CNN conecta primero vecindarios locales; la atención puede relacionar
+parches distantes desde un mismo bloque. Son <strong>sesgos inductivos</strong>: formas en
+que la arquitectura favorece ciertos patrones. No implican una ganadora para
+todas las imágenes. <a href="../ioai/2026/double-agent-dilemma/" class="internal internal-link alias" data-slug="ioai/2026/double-agent-dilemma/index">Double Agent Dilemma</a> explora las diferencias entre un
+ResNet-18 y un ViT-Tiny mediante perturbaciones que buscan hacerlos discrepar.</p>
+<p>El <a href="../ioai/syllabus-ioai" class="internal internal-link alias" data-slug="ioai/syllabus-ioai">Syllabus IOAI</a> incluye atención y Transformers como teoría y práctica en
+texto e imagen. Las otras modalidades y arquitecturas tienen su propio alcance
+en el temario; no se deduce solo a partir del nombre del modelo.</p>
+<h2 id="️-las-tres-trampas">⚠️ Las tres trampas<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-las-tres-trampas" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>1. La atención densa tiene costo cuadrático en el largo.</strong> La matriz
+<code>Q Kᵀ</code> tiene <code>n × n</code> elementos: duplicar el largo cuadruplica ese término de
+cómputo y el almacenamiento si se materializa la matriz. Kernels optimizados
+pueden evitar guardarla completa; el tiempo total del modelo también incluye
+otras operaciones y no tiene por qué multiplicarse exactamente por cuatro.
+Con secuencias largas, ese término puede dominar el presupuesto. Acortar
+la secuencia reduce trabajo, pero también puede eliminar la señal que se
+necesita predecir.</p>
+<p><strong>2. Truncar sin mirar.</strong> Cuando activas truncación en el tokenizador, puede
+recortar la entrada a <code>max_length</code>. Si la información necesaria queda fuera,
+ninguna capa posterior podrá recuperarla.
+Compara la distribución de largos con tu <code>max_length</code> antes de fijarlo — es el
+módulo 01 aplicado a tokens.</p>
+<p><strong>3. Olvidar la máscara de atención.</strong> Con secuencias de largo variable hay
+padding, y sin máscara el modelo atiende al relleno. Los tokenizadores de
+HuggingFace devuelven <code>attention_mask</code> justamente para eso: hay que pasarla.</p>
+<h2 id="️-práctica">🏋️ Práctica<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-práctica" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>Ejercicio</th><th>Fuente</th><th>Qué practica</th></tr></thead><tbody><tr><td>1</td><td>⭐⭐ Construye un Transformer desde cero, línea por línea</td><td><a href="https://karpathy.ai/zero-to-hero.html" class="external external-link" target="_blank">Karpathy — Zero to Hero, clases 6-7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>conectar embeddings, atención y predicción</td></tr><tr><td>2</td><td>Implementa la atención en tres líneas y compárala con <code>scaled_dot_product_attention</code></td><td>—</td><td>que la fórmula sea tuya</td></tr><tr><td>3</td><td>Baraja los tokens de una atención sin posiciones ni máscara causal</td><td>—</td><td>la propiedad menos obvia</td></tr><tr><td>4</td><td>The Illustrated Transformer</td><td><a href="https://jalammar.github.io/illustrated-transformer/" class="external external-link" target="_blank">jalammar.github.io<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>la intuición visual</td></tr><tr><td>5</td><td>⭐ Mide cómo crece el tiempo de la atención al duplicar el largo</td><td>—</td><td>comparar el término teórico con el tiempo medido</td></tr></tbody></table></div>
+<p>En el 5 separa predicción teórica y medida: calienta el kernel, repite varias
+veces y sincroniza CUDA antes y después del cronómetro si usas GPU. Compara
+256 y 512 tokens y explica por qué el tiempo real puede no crecer por cuatro.
+Usa la medida para elegir <code>max_length</code> sin descartar información esencial.</p>
+<h2 id="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-mini-desafío-formato-ioai" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p><strong>Tarea</strong>: <a href="../ioai/2026/find-the-order/" class="internal internal-link alias" data-slug="ioai/2026/find-the-order/index">Find the Order</a> (IOAI 2026, día 1), <strong>la parte de ordenar</strong>.
+Salta el audio: parte de las transcripciones ya hechas (o de textos
+cualquiera partidos en turnos y barajados).
+<strong>Métrica</strong>: exactitud de orden <strong>por pares</strong>: <code>1 − inversiones / pares</code>,
+promediada por diálogo.</p>
+<p>El número de permutaciones crece muy rápido: siete turnos tienen 5.040
+órdenes posibles; veinte tienen más de <code>10¹⁸</code>. Una alternativa es puntuar
+pares y construir un orden a partir de esas preferencias. Pueden aparecer
+ciclos —A antes que B, B antes que C, C antes que A—, por lo que todavía
+hace falta una regla para resolver conflictos. En la tarea original,
+<code>prefix.json</code> proporciona los dos primeros turnos como ancla.</p>
+<p>Fíjate en lo que hace la métrica por ti: al medir <strong>por pares</strong>, un orden casi
+correcto puntúa casi bien. No hace falta acertar la permutación exacta — es
+exactamente el tipo de cosa que se deduce leyendo la métrica antes de
+programar (<a href="../ruta/04---métricas" class="internal internal-link alias" data-slug="ruta/04---métricas">módulo 04</a>).</p>
+</blockquote>
+<h2 id="para-explorar">Para explorar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#para-explorar" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Visualiza la matriz de atención como un mapa de calor. Baraja los tokens
+sin posiciones y mira cómo se reorganizan filas y columnas; agrega posiciones
+y repite.</p>
+<p>Compara dos textos que se distingan solo al final. ¿Qué parte de la tarea
+desaparece al truncarlos, aunque el modelo sea más rápido?</p>
+<hr/>
+<p>← <a href="../ruta/12---embeddings" class="internal internal-link alias" data-slug="ruta/12---embeddings">12 - Embeddings</a> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a> · <a href="../ruta/14---fine-tuning-y-lora" class="internal internal-link alias" data-slug="ruta/14---fine-tuning-y-lora">14 - Fine-tuning y LoRA</a> →</p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Vista Gráfica</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:1,&quot;centerForce&quot;:0.4,&quot;linkDistance&quot;:45,&quot;fontSize&quot;:0.7,&quot;opacityScale&quot;:3,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.7,&quot;repelForce&quot;:1.3,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:50,&quot;fontSize&quot;:0.65,&quot;opacityScale&quot;:1.5,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-89" aria-expanded="true"><h3>Tabla de Contenidos</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#13--atención-y-transformers" data-for="13--atención-y-transformers">13 · Atención y Transformers</a></li><li class="depth-1"><a href="#reunir-información-de-otras-posiciones" data-for="reunir-información-de-otras-posiciones">Reunir información de otras posiciones</a></li><li class="depth-1"><a href="#qué-representan-q-k-y-v" data-for="qué-representan-q-k-y-v">Qué representan Q, K y V</a></li><li class="depth-1"><a href="#máscaras-qué-información-está-disponible" data-for="máscaras-qué-información-está-disponible">Máscaras: qué información está disponible</a></li><li class="depth-1"><a href="#multi-head-varias-atenciones-en-paralelo" data-for="multi-head-varias-atenciones-en-paralelo">Multi-head: varias atenciones en paralelo</a></li><li class="depth-1"><a href="#el-bloque-transformer" data-for="el-bloque-transformer">El bloque Transformer</a></li><li class="depth-1"><a href="#codificación-posicional-la-atención-no-sabe-de-orden" data-for="codificación-posicional-la-atención-no-sabe-de-orden">Codificación posicional: la atención no sabe de orden</a></li><li class="depth-1"><a href="#encoder-decoder-o-los-dos" data-for="encoder-decoder-o-los-dos">Encoder, decoder, o los dos</a></li><li class="depth-1"><a href="#vit-la-misma-cosa-con-parches" data-for="vit-la-misma-cosa-con-parches">ViT: la misma cosa, con parches</a></li><li class="depth-1"><a href="#️-las-tres-trampas" data-for="️-las-tres-trampas">⚠️ Las tres trampas</a></li><li class="depth-1"><a href="#️-práctica" data-for="️-práctica">🏋️ Práctica</a></li><li class="depth-1"><a href="#-mini-desafío-formato-ioai" data-for="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)</a></li><li class="depth-1"><a href="#para-explorar" data-for="para-explorar">Para explorar</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Retroenlaces</h3><ul id="list-0" class="overflow"><li><a href="../ioai/syllabus-ioai" class="internal">Syllabus IOAI</a></li><li><a href="../ruta/12---embeddings" class="internal">12 - Embeddings</a></li><li><a href="../ruta/14---fine-tuning-y-lora" class="internal">14 - Fine-tuning y LoRA</a></li><li><a href="../ruta/ruta-de-aprendizaje" class="internal">Ruta de Aprendizaje</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Creado con <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://ioai-official.org/">IOAI oficial</a></li><li><a href="https://github.com/IOAI-official">Tareas oficiales</a></li><li><a href="https://quartz.jzhao.xyz/">Hecho con Quartz</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-77bffeeb.js" type="module" data-persist="true"></script></html>

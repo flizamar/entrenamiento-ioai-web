@@ -1,0 +1,4 @@
+-r requirements-estudio.txt
+torch==2.14.0
+transformers==5.16.1
+peft==0.20.0

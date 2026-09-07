@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr"><head><title>10 - Gradientes y backpropagation</title><meta charset="utf-8"/><link rel="preload" href="../index-fe4e9060.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Entrenamiento IOAI"/><meta property="og:title" content="10 - Gradientes y backpropagation"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="10 - Gradientes y backpropagation"/><meta name="twitter:description" content="10 · Gradientes y backpropagation Nivel 2 — Deep learning · Ruta de Aprendizaje En el capítulo anterior, backward() calculaba una señal que el optimizador usaba para mover los pesos."/><meta property="og:description" content="10 · Gradientes y backpropagation Nivel 2 — Deep learning · Ruta de Aprendizaje En el capítulo anterior, backward() calculaba una señal que el optimizador usaba para mover los pesos."/><meta property="og:image:alt" content="10 · Gradientes y backpropagation Nivel 2 — Deep learning · Ruta de Aprendizaje En el capítulo anterior, backward() calculaba una señal que el optimizador usaba para mover los pesos."/><meta property="twitter:domain" content="flizamar.github.io/entrenamiento-ioai-web"/><meta property="og:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/10---gradientes-y-backpropagation"/><meta property="twitter:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/10---gradientes-y-backpropagation"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="10 · Gradientes y backpropagation Nivel 2 — Deep learning · Ruta de Aprendizaje En el capítulo anterior, backward() calculaba una señal que el optimizador usaba para mover los pesos."/><meta name="generator" content="Quartz"/><link href="../index-fe4e9060.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/10---gradientes-y-backpropagation-og-image.webp"/><meta property="og:image:url" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/10---gradientes-y-backpropagation-og-image.webp"/><meta name="twitter:image" content="https://flizamar.github.io/entrenamiento-ioai-web/ruta/10---gradientes-y-backpropagation-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="ruta/10---gradientes-y-backpropagation" data-basepath="/entrenamiento-ioai-web"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Entrenamiento IOAI</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Buscar" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Buscar</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Buscar algo..." placeholder="Buscar algo..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Modo oscuro"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Modo oscuro"><title>Modo oscuro</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Modo claro"><title>Modo claro</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Modo lector"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Modo lector"><title>Modo lector</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a, b) => { const orden = [\&quot;ruta\&quot;, \&quot;referencia\&quot;, \&quot;ioai\&quot;]; const ra = orden.indexOf(a.slugSegment), rb = orden.indexOf(b.slugSegment); if (ra !== -1 &amp;&amp; rb !== -1) return ra - rb; if (ra !== -1) return -1; if (rb !== -1) return 1; if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1; return a.displayName.localeCompare(b.displayName, undefined, { numeric: true, sensitivity: \&quot;base\&quot; }); }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-86" aria-label="Explorador"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorador</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-86" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../ruta/">ruta</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>10 - Gradientes y backpropagation</a></div></nav><h1 class="article-title">10 - Gradientes y backpropagation</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/ruta" class="internal internal-link tag-link">ruta</a><span class="note-properties-separator">, </span><a href="../tags/nivel/2" class="internal internal-link tag-link">nivel/2</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-09-07T00:22:51.515Z">07 sept 2026</time><span>Se lee en 10 min</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="10--gradientes-y-backpropagation">10 · Gradientes y backpropagation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10--gradientes-y-backpropagation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><strong>Nivel 2 — Deep learning</strong> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a></p>
+<p>En el capítulo anterior, <code>backward()</code> calculaba una señal que el optimizador
+usaba para mover los pesos. ¿Cómo sabe hacia dónde moverlos? Empecemos con una
+curva de una sola variable; después seguiremos esa señal a través de varias
+operaciones.</p>
+<h2 id="una-pendiente-indica-qué-cambio-probar">Una pendiente indica qué cambio probar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#una-pendiente-indica-qué-cambio-probar" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Imagina que el único peso del modelo es <code>w</code> y su pérdida es <code>L(w)=(w−1)²</code>.
+En <code>w=−1</code>, la pérdida vale 4. Mover un poco <code>w</code> hacia la derecha la reduce;
+moverlo hacia la izquierda la aumenta. La <strong>derivada</strong> describe esa pendiente
+local: cuánto cambia la pérdida por una variación pequeña del peso.</p>
+<p><img src=".././referencia/figuras/gradiente_checkpoint.png" alt="Descenso sobre una parábola y curvas ilustrativas de entrenamiento y validación"/></p>
+<p>En el panel izquierdo, las flechas van hacia el mínimo <code>w=1</code>. Se acortan porque
+la pendiente se hace menor al acercarse. El panel derecho muestra otra pregunta:
+aunque mejoremos el ajuste a train, ¿mejoran las predicciones en datos nuevos?
+Volveremos a esa curva en el capítulo 11.</p>
+<p>Una pendiente puede aproximarse sin una fórmula especial: evalúa un poco antes
+y un poco después y divide la diferencia por la distancia recorrida:</p>
+<pre><code>f'(x) ≈ (f(x+h) − f(x−h)) / (2h)
+</code></pre>
+<p>Para <code>f(x)=x²</code>, en <code>x=3</code>, <code>h=0.001</code> da aproximadamente 6. Cerca de ese punto,
+reducir <code>x</code> en 0.01 reduce <code>f</code> en aproximadamente 0.06. La aproximación es local:
+no describe lo que pasará con un salto arbitrariamente grande.</p>
+<p>Con varios pesos calculamos una pendiente respecto de cada uno, manteniendo
+los demás fijos. Ese conjunto de pendientes es el <strong>gradiente</strong>. La notación
+<code>∂L/∂w</code> expresa cuánto cambia la pérdida <code>L</code> al variar el peso <code>w</code>.
+El descenso de gradiente propone la actualización:</p>
+<pre><code>peso_nuevo = peso_actual − learning_rate × gradiente
+</code></pre>
+<p>El signo menos orienta el paso hacia la bajada local; el <strong>learning rate</strong> regula
+su tamaño. Un paso demasiado grande puede pasar de largo y aumentar la pérdida.
+En una red tampoco hay garantía de llegar al mejor mínimo posible. Y en
+entrenamiento por lotes el gradiente se estima con los ejemplos del lote: no
+cada paso tiene por qué reducir la pérdida del conjunto completo.</p>
+<h2 id="la-regla-de-la-cadena-es-todo-el-truco">La regla de la cadena es todo el truco<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#la-regla-de-la-cadena-es-todo-el-truco" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Si una operación alimenta a otra, un cambio atraviesa ambas. Por ejemplo,
+si la primera operación convierte un pequeño cambio de entrada en uno dos
+veces mayor, y la siguiente lo triplica, el cambio final es seis veces el inicial. La <strong>regla de
+la cadena</strong> formaliza esa multiplicación de sensibilidades locales.</p>
+<p>Por ejemplo, si <code>u</code> depende de <code>x</code> y la pérdida <code>L</code> depende de <code>u</code>, tenemos
+la cadena <code>x → u → L</code>. Sus pendientes se combinan así:</p>
+<pre><code>∂L/∂x = ∂L/∂u · ∂u/∂x
+</code></pre>
+<p><strong>Backpropagation</strong>, o propagación hacia atrás, aplica esta regla desde la
+pérdida hacia las entradas. Primero obtiene <code>∂L/∂u</code>, la multiplica por la
+derivada local de la operación anterior y continúa. Reutiliza resultados
+intermedios para no repetir trabajo. Cada capa aporta las derivadas de
+<strong>su</strong> operación. Si una variable llega por varios caminos, se suman sus
+contribuciones; en capas vectoriales se combinan matrices de derivadas.</p>
+<p>No suele ser necesario programar la derivada de cada capa: al escribir su
+<code>forward</code> con operaciones diferenciables de PyTorch, autograd conecta las reglas
+de derivación de esas operaciones. Un módulo también puede contener operaciones
+sin gradiente; envolverlas en una clase no las vuelve diferenciables.</p>
+<h2 id="comprobarlo-derivada-a-mano-contra-autograd">Comprobarlo: derivada a mano contra autograd<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#comprobarlo-derivada-a-mano-contra-autograd" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Nada convence como verlo coincidir. Toma <code>f(x) = (3x + 2)²</code>. A mano, con la
+regla de la cadena: la derivada de <code>u²</code> es <code>2u</code>, y la de <code>3x+2</code> es <code>3</code>, así que
+<code>f'(x) = 2(3x+2)·3 = 6(3x+2)</code>. En <code>x = 2</code> eso da <code>6 · 8 = 48</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> torch</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.tensor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">2.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">requires_grad</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">True</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">f </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">**</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">f.backward()</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(x.grad.item())          </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># 48.0</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">6</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> +</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))        </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># 48</span></span></code></pre></figure>
+<p><code>requires_grad=True</code> pide seguir los cálculos que dependen de <code>x</code>. Durante el
+forward, autograd registra operaciones; <code>backward()</code> recorre ese grafo en
+sentido inverso y acumula en <code>x.grad</code> el resultado. No actualiza <code>x</code>: esa es otra
+operación, que normalmente realiza el optimizador.</p>
+<p>Podemos contrastar tres caminos hacia 48: la cuenta a mano, una diferencia
+finita y autograd. Cerca de puntos suaves deben concordar aproximadamente;
+la diferencia finita además depende del tamaño de <code>h</code> y del redondeo.</p>
+<h2 id="el-perceptrón-y-por-qué-hacen-falta-las-activaciones">El perceptrón, y por qué hacen falta las activaciones<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#el-perceptrón-y-por-qué-hacen-falta-las-activaciones" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Una neurona toma varias entradas, las pondera y añade un sesgo:
+<code>z = w₁x₁ + w₂x₂ + … + b</code>. Cada peso regula cuánto aporta una entrada;
+el sesgo <code>b</code> permite desplazar la respuesta. Una <strong>activación</strong> transforma <code>z</code>
+antes de enviarlo a la siguiente capa.</p>
+<p><code>nn.Linear(4, 2)</code> calcula dos sumas de ese tipo a partir de cuatro features.
+Tiene <code>2×4</code> pesos y dos sesgos. Si apilamos estas transformaciones sin una
+activación no lineal, siguen siendo una sola transformación afín: una suma
+ponderada más un sesgo. Agregar capas así cambia la parametrización, pero no
+permite representar una frontera curva.</p>
+<p>XOR permite verlo con cuatro puntos: <code>(0,0)</code> y <code>(1,1)</code> pertenecen a una clase;
+<code>(0,1)</code> y <code>(1,0)</code> a la otra. Ninguna recta separa esas dos diagonales. Un <a href="../referencia/recetas/mlp" class="internal internal-link" data-slug="referencia/recetas/mlp">MLP</a>
+con activaciones no lineales puede construir varias regiones y representarlas.
+Aprender sus pesos mediante entrenamiento sigue siendo un problema distinto
+de que la arquitectura pueda expresar la respuesta.</p>
+<p>Tres activaciones habituales:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Activación</th><th>Rango</th><th>Cuándo</th></tr></thead><tbody><tr><td><strong>ReLU</strong> <code>max(0, z)</code></td><td><code>[0, ∞)</code></td><td>deja pasar positivos y convierte negativos en cero; frecuente en capas ocultas</td></tr><tr><td><strong>Sigmoide</strong> <code>1/(1+e⁻ᶻ)</code></td><td><code>(0, 1)</code></td><td>convierte un logit en probabilidad binaria; también aparece en compuertas</td></tr><tr><td><strong>Tanh</strong></td><td><code>(−1, 1)</code></td><td>comprime la respuesta conservando ambos signos; usada, por ejemplo, en redes recurrentes</td></tr></tbody></table></div>
+<p>Sigmoide y tanh <strong>saturan</strong>: al acercarse a los extremos de su rango, su
+derivada es casi cero, y al multiplicar muchas derivadas casi cero por la regla
+de la cadena el gradiente se desvanece antes de llegar a las primeras capas. ReLU tiene
+derivada 1 en la región positiva, pero 0 en la negativa: tampoco elimina todos
+los problemas de gradientes y puede dejar neuronas inactivas.</p>
+<h2 id="las-pérdidas-convertir-una-predicción-en-un-error">Las pérdidas: convertir una predicción en un error<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#las-pérdidas-convertir-una-predicción-en-un-error" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>La pérdida debe conectar lo que devuelve la red con la respuesta conocida.
+En regresión podemos restar predicción y objetivo. En clasificación necesitamos
+penalizar que el modelo asigne poca probabilidad a la clase correcta.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Pérdida</th><th>Qué calcula</th><th>Consecuencia</th></tr></thead><tbody><tr><td><strong>MSE</strong></td><td>promedio de errores al cuadrado</td><td>un error de 10 pesa cien veces uno de 1</td></tr><tr><td><strong>MAE</strong></td><td>promedio de errores absolutos</td><td>un error de 10 pesa diez veces uno de 1</td></tr><tr><td><strong>Cross-entropy</strong></td><td>menos el logaritmo de la probabilidad de la clase correcta</td><td>equivocarse con mucha confianza recibe una penalización grande</td></tr></tbody></table></div>
+<p>Si debieras predecir una única constante para un conjunto de valores, la media
+minimiza MSE y una mediana minimiza MAE. Una red usa las entradas para variar su
+predicción; estas pérdidas favorecen respuestas distintas cuando hay ruido o
+valores extremos.</p>
+<p>La pérdida y la métrica del módulo 04 están relacionadas, pero no siempre son
+idénticas. Accuracy cambia solo cuando cambia la clase elegida: ofrece poca
+información para un gradiente. Cross-entropy permite entrenar incluso antes de
+que cambie ese acierto. En <a href="../ioai/2026/ghost-of-the-machine/" class="internal internal-link alias" data-slug="ioai/2026/ghost-of-the-machine/index">Ghost of the Machine</a>, el promedio de
+<code>exp(−|error|/100)</code> valora la distancia absoluta de forma no lineal: MAE es una
+pérdida posible, <strong>no una optimización equivalente del score</strong>. La comparación
+final debe usar la métrica que realmente se evalúa.</p>
+<h2 id="logits-la-entrada-que-espera-cross-entropy">Logits: la entrada que espera cross-entropy<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#logits-la-entrada-que-espera-cross-entropy" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Un <strong>logit</strong> es una puntuación real sin normalizar. Para tres clases, la red
+podría devolver <code>[2.0, 0.5, −1.0]</code>: la primera tiene mayor puntuación, pero esos
+números todavía no son probabilidades. <strong>Softmax</strong> los convierte en valores
+positivos que suman uno, amplificando las diferencias mediante exponenciales.</p>
+<p><code>cross_entropy</code> combina esa normalización con el logaritmo de forma numéricamente
+estable. Espera logits y, en este ejemplo, un índice de clase por muestra.
+Pasarle probabilidades calculadas antes aplica otra normalización: cambia la
+pérdida y su gradiente, aunque no dé error.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: probado; id: logits</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> math</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> torch</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.nn </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> nn</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">logits </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.tensor([[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">2.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0.5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]])</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.tensor([</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">])</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(nn.functional.cross_entropy(logits, y).item())   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># 0.2413  ← correcto</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">probs </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.softmax(logits, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dim</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(nn.functional.cross_entropy(probs, y).item())    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># 0.7017  ← mal, sin avisar</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function">math.log(probs[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">].item()))                   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># 0.2413  ← la cuenta a mano</span></span></code></pre></figure>
+<p>En un clasificador multiclase entrenado con esta pérdida, la cabeza puede ser
+una <code>nn.Linear</code> que devuelve <code>(lote, n_clases)</code> <strong>sin softmax final</strong>. Para elegir
+la clase basta <code>argmax</code>: softmax no cambia qué puntuación es la mayor. Si queremos
+probabilidades para un umbral o un gráfico, sí lo aplicamos al predecir:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: fragmento</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">with</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.no_grad():</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    probs </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.softmax(modelo(X_val), </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">dim</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)[:, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]</span></span></code></pre></figure>
+<p>Ese <code>[:, 1]</code> selecciona la probabilidad de la clase 1. Otra formulación binaria
+usa <strong>un</strong> logit por ejemplo con <code>BCEWithLogitsLoss</code>, que incorpora la sigmoide.
+No se intercambian ambas pérdidas sin revisar la forma de salida y el formato
+de las etiquetas.</p>
+<h2 id="las-otras-dos-trampas">Las otras dos trampas<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#las-otras-dos-trampas" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>1. Gradientes que explotan.</strong> El espejo del desvanecimiento: si los factores
+de la cadena son grandes, el gradiente puede crecer hasta producir pasos
+inestables o valores no finitos, como <code>nan</code>. Una pérdida no finita también puede venir de datos ausentes o de una
+operación inválida: revisa entradas y primera operación que produce el error.
+Si el origen son gradientes enormes, prueba bajar el learning rate (módulo 11)
+o recortar su norma con <code>torch.nn.utils.clip_grad_norm_</code>.</p>
+<p><strong>2. <code>backward()</code> dos veces sobre el mismo grafo.</strong> PyTorch libera por defecto
+los valores intermedios necesarios para derivar. Reutilizar esa misma pérdida
+puede dar <code>Trying to backward through the graph a second time</code>.
+<strong><code>zero_grad()</code> solo limpia gradientes acumulados; no reconstruye el grafo.</strong>
+En un paso nuevo vuelve a ejecutar el forward. Si arrastras estados entre
+iteraciones, revisa dónde corresponde <code>detach()</code>; para registrar números usa
+<code>.item()</code>. <code>retain_graph=True</code> solo corresponde si necesitas derivar de nuevo
+el mismo forward, y conserva memoria.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># bloque: probado; id: autograd_recalcular</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> torch</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> torch.tensor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">2.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">requires_grad</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">True</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">f </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">**</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">f.backward()</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">x.grad.zero_()                  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># limpia gradientes, no el grafo anterior</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">f_nueva </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">**</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       # forward nuevo</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">f_nueva.backward()</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">assert</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> x.grad.item() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 48.0</span></span></code></pre></figure>
+<h2 id="️-práctica">🏋️ Práctica<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-práctica" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>Ejercicio</th><th>Fuente</th><th>Qué practica</th></tr></thead><tbody><tr><td>1</td><td>⭐⭐ <em>micrograd</em>: backprop desde cero, línea por línea</td><td><a href="https://karpathy.ai/zero-to-hero.html" class="external external-link" target="_blank">Karpathy — Zero to Hero, clase 1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>construir un motor de derivación escalar</td></tr><tr><td>2</td><td>Deriva a mano tres funciones y compáralas con autograd</td><td>—</td><td>que coincida el número</td></tr><tr><td>3</td><td>Implementa un perceptrón con NumPy: forward y backward a mano, sin PyTorch</td><td>—</td><td>entender qué automatiza autograd</td></tr><tr><td>4</td><td>Entrena el XOR con y sin activaciones y comprueba que sin ellas no puede</td><td><a href="../referencia/recetas/mlp" class="internal internal-link" data-slug="referencia/recetas/mlp">MLP</a></td><td>la razón de ser de las no linealidades</td></tr><tr><td>5</td><td>Provoca una pérdida <code>nan</code> subiendo el learning rate, y arréglala</td><td>—</td><td>reconocer gradientes que explotan</td></tr></tbody></table></div>
+<p>Micrograd permite ver el grafo completo de una red pequeña. Seguir cómo una
+variable recibe contribuciones por dos caminos conecta el programa con la
+regla de la cadena.</p>
+<h2 id="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-mini-desafío-formato-ioai" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p><strong>Tarea</strong>: implementa <code>descenso_gradiente(f, x0, lr, pasos)</code> que minimice una
+función de una variable <strong>calculando el gradiente con autograd</strong>, y úsala para
+encontrar el mínimo de <code>(x−3)²</code>, <code>2(x+1)²+4</code> y <code>(x−0.5)²+2</code>, desde
+<code>x0=0</code>, con <code>lr=0.1</code> y 100 pasos.
+<strong>Métrica</strong>: error absoluto en la posición del mínimo menor que <code>1e-4</code>.
+<strong>Referencia</strong>: los mínimos están en <code>3</code>, <code>−1</code> y <code>0.5</code>; sin actualizar, el
+baseline <code>x0=0</code> tiene errores <code>3</code>, <code>1</code> y <code>0.5</code>.</p>
+<p>También puedes <strong>graficar la trayectoria</strong> para tres learning
+rates — uno muy chico, uno bueno, uno muy grande. Vas a ver los tres
+comportamientos que el módulo 11 va a nombrar: lento, sano y divergente.</p>
+</blockquote>
+<h2 id="para-explorar">Para explorar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#para-explorar" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Dibuja la parábola del mini-desafío y los primeros cinco pasos de descenso.
+¿Qué cambia al duplicar el learning rate, y qué permanece igual en el gradiente?</p>
+<p>Compara derivación a mano, diferencias finitas y autograd en la misma función.
+Busca un punto donde ReLU no sea derivable y observa la convención de PyTorch.</p>
+<hr/>
+<p>← <a href="../ruta/09---tensores-y-pytorch" class="internal internal-link alias" data-slug="ruta/09---tensores-y-pytorch">09 - Tensores y PyTorch</a> · <a href="../ruta/ruta-de-aprendizaje" class="internal internal-link alias" data-slug="ruta/ruta-de-aprendizaje">Ruta de Aprendizaje</a> ·
+<a href="../ruta/11---entrenar-de-verdad" class="internal internal-link alias" data-slug="ruta/11---entrenar-de-verdad">11 - Entrenar de verdad</a> →</p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Vista Gráfica</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:1,&quot;centerForce&quot;:0.4,&quot;linkDistance&quot;:45,&quot;fontSize&quot;:0.7,&quot;opacityScale&quot;:3,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.7,&quot;repelForce&quot;:1.3,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:50,&quot;fontSize&quot;:0.65,&quot;opacityScale&quot;:1.5,&quot;showTags&quot;:false,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-86" aria-expanded="true"><h3>Tabla de Contenidos</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#10--gradientes-y-backpropagation" data-for="10--gradientes-y-backpropagation">10 · Gradientes y backpropagation</a></li><li class="depth-1"><a href="#una-pendiente-indica-qué-cambio-probar" data-for="una-pendiente-indica-qué-cambio-probar">Una pendiente indica qué cambio probar</a></li><li class="depth-1"><a href="#la-regla-de-la-cadena-es-todo-el-truco" data-for="la-regla-de-la-cadena-es-todo-el-truco">La regla de la cadena es todo el truco</a></li><li class="depth-1"><a href="#comprobarlo-derivada-a-mano-contra-autograd" data-for="comprobarlo-derivada-a-mano-contra-autograd">Comprobarlo: derivada a mano contra autograd</a></li><li class="depth-1"><a href="#el-perceptrón-y-por-qué-hacen-falta-las-activaciones" data-for="el-perceptrón-y-por-qué-hacen-falta-las-activaciones">El perceptrón, y por qué hacen falta las activaciones</a></li><li class="depth-1"><a href="#las-pérdidas-convertir-una-predicción-en-un-error" data-for="las-pérdidas-convertir-una-predicción-en-un-error">Las pérdidas: convertir una predicción en un error</a></li><li class="depth-1"><a href="#logits-la-entrada-que-espera-cross-entropy" data-for="logits-la-entrada-que-espera-cross-entropy">Logits: la entrada que espera cross-entropy</a></li><li class="depth-1"><a href="#las-otras-dos-trampas" data-for="las-otras-dos-trampas">Las otras dos trampas</a></li><li class="depth-1"><a href="#️-práctica" data-for="️-práctica">🏋️ Práctica</a></li><li class="depth-1"><a href="#-mini-desafío-formato-ioai" data-for="-mini-desafío-formato-ioai">🎯 Mini-desafío (formato IOAI)</a></li><li class="depth-1"><a href="#para-explorar" data-for="para-explorar">Para explorar</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Retroenlaces</h3><ul id="list-0" class="overflow"><li><a href="../ioai/syllabus-ioai" class="internal">Syllabus IOAI</a></li><li><a href="../ruta/09---tensores-y-pytorch" class="internal">09 - Tensores y PyTorch</a></li><li><a href="../ruta/11---entrenar-de-verdad" class="internal">11 - Entrenar de verdad</a></li><li><a href="../ruta/puentes-de-entrada" class="internal">Puentes de entrada</a></li><li><a href="../ruta/ruta-de-aprendizaje" class="internal">Ruta de Aprendizaje</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Creado con <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://ioai-official.org/">IOAI oficial</a></li><li><a href="https://github.com/IOAI-official">Tareas oficiales</a></li><li><a href="https://quartz.jzhao.xyz/">Hecho con Quartz</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-77bffeeb.js" type="module" data-persist="true"></script></html>
